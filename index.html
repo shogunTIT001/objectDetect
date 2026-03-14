@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Pixel Shape Detector Pro - Ultra Stable v4.5</title>
+<title>Pixel Shape Detector Pro - Ultra Robust</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Noto+Sans+Thai:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -41,6 +41,11 @@ header{display:flex;align-items:center;gap:12px;padding:12px 16px;margin-bottom:
 .dr{background:#ff5f57}.dy{background:#febc2e}.dg{background:#28c840}
 #fpsBadge{margin-left:auto;color:var(--accent);font-size:11px;font-weight:600}
 
+.url-bar{display:flex;flex-direction:column;gap:8px;padding:12px 14px;background:rgba(255,255,255,0.02);border-bottom:1px solid var(--border)}
+.url-row{display:flex;gap:8px}
+.url-input{flex:1;background:rgba(0,0,0,0.3);border:1px solid var(--border);border-radius:8px;padding:10px 12px;color:white;font-family:monospace;font-size:12px;outline:none}
+.url-input:focus{border-color:var(--accent)}
+
 .toolbar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;
   padding:8px 14px;border-bottom:1px solid var(--border);background:rgba(0,0,0,.3)}
 .tlabel{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:1px}
@@ -51,18 +56,13 @@ header{display:flex;align-items:center;gap:12px;padding:12px 16px;margin-bottom:
 .tbtn.active{background:rgba(0,229,255,.15);border-color:var(--accent);color:var(--accent)}
 .tbtn.del{border-color:#ff4444;color:#ff6666}
 
-.varea{position:relative;background:#000;min-height:280px;
+.varea{position:relative;background:#000;min-height:300px;
   display:flex;align-items:center;justify-content:center;overflow:hidden}
 #video{width:100%;max-height: 65vh;display:block;object-fit: contain}
 #overlayCanvas,#drawCanvas{position:absolute;inset:0;width:100%;height:100%}
 #overlayCanvas{pointer-events:none}
 #drawCanvas{z-index:10; touch-action: none;}
 .novideo{position:absolute;text-align:center;color:var(--muted);z-index:5;padding:20px}
-
-.url-bar{display:flex;flex-direction:column;gap:8px;padding:12px 14px;background:rgba(255,255,255,0.02);border-bottom:1px solid var(--border)}
-.url-row{display:flex;gap:8px}
-.url-input{flex:1;background:rgba(0,0,0,0.3);border:1px solid var(--border);border-radius:8px;padding:10px 12px;color:white;font-family:monospace;font-size:12px;outline:none}
-.url-input:focus{border-color:var(--accent)}
 
 .controls{display:flex;flex-wrap:wrap;gap:8px;padding:12px 14px;border-top:1px solid var(--border);background:rgba(0,0,0,0.2)}
 .btn{padding:10px 16px;border-radius:10px;border:1px solid var(--border);
@@ -71,7 +71,7 @@ header{display:flex;align-items:center;gap:12px;padding:12px 16px;margin-bottom:
   display:flex;align-items:center;gap:6px; flex: 1; min-width: 130px; justify-content: center;}
 .btn.pri{background:var(--accent);border-color:var(--accent);color:#000;font-weight:600}
 
-/* Sidebar Layout */
+/* Sidebar Layout & Cards */
 .rpanel{display:flex;flex-direction:column;gap:12px}
 .card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden}
 .card-hd{padding:10px 14px;border-bottom:1px solid var(--border);
@@ -92,7 +92,7 @@ header{display:flex;align-items:center;gap:12px;padding:12px 16px;margin-bottom:
 .sampler-info { flex: 1; display: flex; flex-direction: column; gap: 6px; }
 #tpColorBox { width: 100%; height: 32px; border-radius: 6px; border: 2px solid #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
 
-/* Color Targets */
+/* Color Targets Fix */
 .color-targets { display: flex; flex-direction: column; gap: 8px; max-height: 220px; overflow-y: auto; padding-right: 4px; }
 .ct-row { border-radius: 12px; border: 1px solid var(--border); background: rgba(255,255,255,.02); overflow: hidden; display: flex; flex-direction: column; width: 100%; }
 .ct-top { display: flex; align-items: center; width: 100%; min-height: 52px; }
@@ -108,7 +108,7 @@ header{display:flex;align-items:center;gap:12px;padding:12px 16px;margin-bottom:
 .ct-tol-slider { flex: 1; height: 4px; accent-color: var(--accent); cursor: pointer; }
 .ct-tol-val { font-family:'IBM Plex Mono',monospace; font-size: 10px; color: var(--accent); min-width: 24px; text-align: right; }
 
-/* Audio Alert */
+/* Audio Alert UI */
 .sound-box { border: 2px dashed var(--border); border-radius: 12px; padding: 18px; text-align: center; cursor: pointer; transition: 0.2s; }
 .sound-box:hover { border-color: var(--accent); background: rgba(0,229,255,0.05); }
 .sound-controls { background: rgba(0,0,0,0.2); padding: 10px; border-radius: 10px; border: 1px solid var(--border); margin-top: 8px; }
@@ -117,9 +117,10 @@ header{display:flex;align-items:center;gap:12px;padding:12px 16px;margin-bottom:
 .srow input[type=range] { flex: 1; accent-color: var(--accent); height: 4px; }
 .sval { font-family:'IBM Plex Mono',monospace; font-size: 11px; color: var(--accent); min-width: 30px; text-align: right; }
 
-/* Log Box */
+/* Log Box & Clear */
 #logBox{background:#050508;border:1px solid var(--border);border-radius:10px;padding:10px;height:100px;overflow-y:auto;font-family:monospace;font-size:9px;color:var(--ok)}
 .lg-e{color:#ff6b6b}
+.lg-w{color:var(--warn)}
 .clear-log-btn { background: none; border: 1px solid var(--muted); color: var(--muted); border-radius: 4px; padding: 2px 6px; font-size: 9px; cursor: pointer; transition: 0.2s; }
 .clear-log-btn:hover { border-color: #ff6b6b; color: #ff6b6b; }
 
@@ -136,7 +137,7 @@ header{display:flex;align-items:center;gap:12px;padding:12px 16px;margin-bottom:
     <div class="logo">🎯</div>
     <div class="htxt">
       <h1>PIXEL DETECTOR PRO</h1>
-      <p>ระบบตรวจจับวัตถุสมบูรณ์แบบ — Enhanced Stability 4.5</p>
+      <p>ระบบตรวจจับวัตถุสมบูรณ์แบบ — Ultra Robust Edition</p>
     </div>
     <div class="hbadge" id="hbadge">● STANDBY</div>
   </header>
@@ -167,6 +168,7 @@ header{display:flex;align-items:center;gap:12px;padding:12px 16px;margin-bottom:
         <div class="novideo" id="novideo">
           <div style="font-size:40px;margin-bottom:10px">📽️</div>
           <p>เปิดวิดีโอ หรือใช้ Screen Capture เพื่อเริ่ม</p>
+          <p style="font-size: 10px; color: var(--warn); margin-top: 10px;">(Screen Capture ต้องใช้บน HTTPS/Localhost เท่านั้น)</p>
         </div>
         <video id="video" autoplay muted playsinline crossorigin="anonymous"></video>
         <canvas id="overlayCanvas"></canvas>
@@ -185,7 +187,7 @@ header{display:flex;align-items:center;gap:12px;padding:12px 16px;margin-bottom:
     </div>
 
     <div class="rpanel">
-      <!-- Sampler -->
+      <!-- Precision Sampler Sidebar -->
       <div class="card sampler-card" id="samplerCard">
         <div class="card-hd">💉 PRECISION SAMPLING</div>
         <div class="card-bd">
@@ -198,13 +200,13 @@ header{display:flex;align-items:center;gap:12px;padding:12px 16px;margin-bottom:
               </div>
            </div>
            <div style="display:flex; gap:8px;">
-              <button class="btn" id="tpCancel" style="border-color:#ff6b6b; color:#ff6b6b; font-size: 11px;">ปิด</button>
-              <button class="btn pri" id="tpConfirm" style="font-size: 11px;">เลือก</button>
+              <button class="btn" id="tpCancel" style="border-color:#ff6b6b; color:#ff6b6b; font-size: 11px;">ปิดโหมด</button>
+              <button class="btn pri" id="tpConfirm" style="font-size: 11px;">เลือกสีนี้</button>
            </div>
         </div>
       </div>
 
-      <!-- Optimization -->
+      <!-- Engine Tuning -->
       <div class="card">
         <div class="card-hd">🚀 ENGINE TUNING</div>
         <div class="card-bd">
@@ -244,7 +246,7 @@ header{display:flex;align-items:center;gap:12px;padding:12px 16px;margin-bottom:
         <div class="card-bd">
           <div class="sound-box" id="soundDrop">
             <div style="font-size:20px">🎵</div>
-            <div style="font-size:10px; color:var(--muted); margin-top:4px;">คลิกเพื่อตั้งเสียง</div>
+            <div style="font-size:10px; color:var(--muted); margin-top:4px;">เลือกไฟล์เสียงแจ้งเตือน</div>
             <input type="file" id="soundUpload" accept="audio/*" style="display:none">
           </div>
           <div class="sound-controls">
@@ -267,6 +269,18 @@ header{display:flex;align-items:center;gap:12px;padding:12px 16px;margin-bottom:
         </div>
       </div>
 
+      <!-- Engine Stats -->
+      <div class="card">
+        <div class="card-hd">📊 ENGINE STATS</div>
+        <div class="card-bd">
+          <div class="sgrid">
+            <div class="sbox"><div class="snum" id="stTotal">0</div><div class="slbl">Found</div></div>
+            <div class="sbox"><div class="snum" id="stMs">0</div><div class="slbl">Latency (ms)</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Log Box -->
       <div class="card">
         <div class="card-hd">
           <span>📟 LOG</span>
@@ -304,7 +318,7 @@ let maskBuffer = null, visitedBuffer = null;
 // --- Target Management ---
 function addColor(hex, name) {
   const r = parseInt(hex.slice(1,3), 16), g = parseInt(hex.slice(3,5), 16), b = parseInt(hex.slice(5,7), 16);
-  state.targets.push({ r, g, b, hex, name, tol: 40, count: 0 });
+  state.targets.push({ r, g, b, hex, name, tol: 50, count: 0 });
   renderTargets();
   log(`🎨 เพิ่มเป้าหมาย: ${name}`);
 }
@@ -342,6 +356,10 @@ $('btnAddColor').onclick = () => {
 // --- Detection Engine ---
 function startEngine() {
   if (state.running) return;
+  if (video.videoWidth === 0) {
+      log('⚠️ รอไฟล์วิดีโอโหลดขนาดจริง...', 'lg-w');
+      return;
+  }
   state.running = true;
   $('novideo').style.display = 'none';
   $('hbadge').textContent = '● SCANNING';
@@ -381,27 +399,42 @@ function processFrame() {
   }
 
   pCtx.drawImage(video, 0, 0, procW, procH);
-  let imageData; try { imageData = pCtx.getImageData(0, 0, procW, procH); } catch (e) { return; }
-  const data = imageData.data; oCtx.clearRect(0, 0, fullW, fullH);
+  let imageData; 
+  try { 
+    imageData = pCtx.getImageData(0, 0, procW, procH); 
+  } catch (e) { 
+    // This typically happens with CORS if using an external URL
+    return; 
+  }
+  
+  const data = imageData.data;
+  oCtx.clearRect(0, 0, fullW, fullH);
   
   let totalFound = 0;
   const invScale = 1 / state.procScale;
 
   state.targets.forEach((tg, idx) => {
-    const tolSq = tg.tol * tg.tol; maskBuffer.fill(0);
+    const tolSq = tg.tol * tg.tol; 
+    maskBuffer.fill(0);
+    
     for (let i = 0, j = 0; i < data.length; i += 4, j++) {
       const dr = data[i]-tg.r, dg = data[i+1]-tg.g, db = data[i+2]-tg.b;
       if ((dr*dr + dg*dg + db*db) < tolSq) maskBuffer[j] = 1;
     }
+    
     const blobs = findBlobs(maskBuffer, procW, procH);
     let count = 0;
+    
     blobs.forEach(blob => {
       const fx = blob.cx * invScale, fy = blob.cy * invScale;
+      // Adjust min size filter for scale
       if (blob.size < (state.minBlobSize * state.minBlobSize * state.procScale)) return;
       if (!isPointInZones(fx, fy)) return;
+      
       count++;
       if (state.showBox) drawBlob({ x: blob.x*invScale, y: blob.y*invScale, w: blob.w*invScale, h: blob.h*invScale }, tg.hex, tg.name, count);
     });
+    
     tg.count = count; totalFound += count;
     const el = $(`cnt_${idx}`); if (el) el.textContent = count;
   });
@@ -444,7 +477,7 @@ async function initAudio() { if (state.audioCtx) return; state.audioCtx = new (w
 async function loadSound(file) {
   await initAudio(); const arrayBuffer = await file.arrayBuffer();
   state.audioBuffer = await state.audioCtx.decodeAudioData(arrayBuffer);
-  log(`🎵 เสียงพร้อม: ${file.name}`); $('sndStatus').textContent = file.name; state.isTriggered = false;
+  log(`🎵 เสียงพร้อมใช้งาน: ${file.name}`); $('sndStatus').textContent = file.name; state.isTriggered = false;
 }
 $('soundUpload').onchange = e => loadSound(e.target.files[0]);
 $('soundDrop').onclick = () => $('soundUpload').click();
@@ -465,62 +498,28 @@ function playAlert() {
   const dot = $('sndDot'); dot.style.background = 'var(--ok)'; setTimeout(() => dot.style.background = 'var(--muted)', 200);
 }
 
-// --- Screen Capture FIX (Ultra Robust) ---
+// --- Inputs ---
 $('btnCap').onclick = async () => {
   try {
-    // Check for Secure Context
-    if (!window.isSecureContext) {
-        log('❌ Screen Capture ต้องการ HTTPS หรือ localhost', 'lg-e');
-        return;
-    }
-    
-    if (!navigator.mediaDevices || !navigator.mediaDevices.getDisplayMedia) {
-        log('❌ เบราว์เซอร์ของคุณไม่รองรับการแชร์หน้าจอ', 'lg-e');
-        return;
-    }
-
-    log('🖥️ กำลังขอสิทธิ์บันทึกหน้าจอ...');
-    
-    // Stop current engine
+    log('🖥️ กำลังขอสิทธิ์แชร์หน้าจอ...');
+    // Stop current engine first
     state.running = false;
     video.pause();
     
-    // Clear existing sources properly
-    if (video.srcObject) {
-        video.srcObject.getTracks().forEach(track => track.stop());
-    }
-    video.srcObject = null;
+    const stream = await navigator.mediaDevices.getDisplayMedia({ video: true, audio: false });
+    if (video.srcObject) { video.srcObject.getTracks().forEach(t => t.stop()); }
+    video.srcObject = stream;
     if (video.src) { URL.revokeObjectURL(video.src); video.removeAttribute('src'); }
 
-    // Request Screen
-    const stream = await navigator.mediaDevices.getDisplayMedia({ 
-        video: { cursor: "always" }, 
-        audio: false 
-    });
-    
-    video.srcObject = stream;
-    
-    // Auto-stop detection when sharing ends
     stream.getVideoTracks()[0].onended = () => {
-        log('🛑 แชร์หน้าจอถูกหยุด');
-        state.running = false;
-        video.pause();
-        video.srcObject = null;
-        $('hbadge').textContent = '● STANDBY';
-        $('novideo').style.display = 'block';
+        log('🛑 แชร์หน้าจอถูกหยุด'); state.running = false; video.srcObject = null;
+        $('hbadge').textContent = '● STANDBY'; $('novideo').style.display = 'block';
     };
 
-    // Force Play
-    await video.play();
-    startEngine();
-    log('✅ เริ่มบันทึกหน้าจอสำเร็จ');
-
+    video.play();
+    log('✅ หน้าจอเชื่อมต่อแล้ว');
   } catch (e) {
-    if (e.name === 'NotAllowedError') {
-        log('⚠️ คุณยกเลิกการแชร์หน้าจอ');
-    } else {
-        log('❌ ข้อผิดพลาด: ' + e.message, 'lg-e');
-    }
+    log('❌ ' + e.message, 'lg-e');
   }
 };
 
@@ -531,27 +530,28 @@ $('upload').onchange = e => {
     video.src = URL.createObjectURL(f);
     video.loop = true;
     video.play();
-    startEngine();
-    log(`📂 โหลดวิดีโอ: ${f.name}`);
+    log(`📂 โหลดไฟล์: ${f.name}`);
   }
 };
 
 $('btnLoadUrl').onclick = () => {
   const u = $('videoUrl').value.trim();
   if (u) {
+    log(`🔗 กำลังดึงข้อมูลจากลิงก์...`);
     video.srcObject = null;
     video.src = u;
     video.crossOrigin = "anonymous";
-    video.play().then(() => {
-      startEngine();
-      log('🔗 โหลดลิงก์วิดีโอสำเร็จ');
-    }).catch(e => log('❌ ไม่สามารถโหลดลิงก์ได้ (CORS)','lg-e'));
+    video.play().then(() => log('✅ โหลดลิงก์วิดีโอสำเร็จ'))
+    .catch(e => {
+        log('❌ ไม่สามารถเข้าถึงพิกเซลจากลิงก์นี้ได้ (ติดปัญหา CORS)','lg-e');
+        log('💡 คำแนะนำ: แหล่งที่มาไม่อนุญาตให้ใช้ข้ามโดเมน ให้ดาวน์โหลดไฟล์มาอัปโหลดแทน','lg-w');
+    });
   }
 };
 
 // --- Precision Sampling ---
 $('btnSample').onclick = () => {
-  if (video.videoWidth === 0) return log('❌ เปิดวิดีโอก่อน');
+  if (video.videoWidth === 0) return log('❌ เปิดวิดีโอก่อนดูดสี');
   state.samplingMode = true;
   if (state.sampleX === -1) { state.sampleX = video.videoWidth/2; state.sampleY = video.videoHeight/2; }
   $('samplerCard').style.display = 'block';
@@ -584,9 +584,13 @@ function updateSamplingPreview() {
   const x = state.sampleX, y = state.sampleY;
   dCtx.strokeStyle = '#fff'; dCtx.lineWidth = 1;
   dCtx.beginPath(); dCtx.moveTo(x-25,y); dCtx.lineTo(x+25,y); dCtx.moveTo(x,y-25); dCtx.lineTo(x,y+25); dCtx.stroke();
+  dCtx.strokeStyle = '#000'; dCtx.strokeRect(x-1, y-1, 3, 3);
   try {
     zCtx.clearRect(0, 0, ZC.width, ZC.height); zCtx.imageSmoothingEnabled = false;
-    zCtx.drawImage(video, x - 5, y - 5, 10, 10, 0, 0, ZC.width, ZC.height);
+    // Clipping for DrawImage to prevent index errors
+    const sx = Math.max(0, Math.min(video.videoWidth - 10, x - 5));
+    const sy = Math.max(0, Math.min(video.videoHeight - 10, y - 5));
+    zCtx.drawImage(video, sx, sy, 10, 10, 0, 0, ZC.width, ZC.height);
     zCtx.strokeStyle = 'red'; zCtx.lineWidth = 2; zCtx.strokeRect(37, 37, 6, 6);
     const tempC = document.createElement('canvas'); tempC.width = 1; tempC.height = 1;
     const tCtx = tempC.getContext('2d'); tCtx.drawImage(video, -x, -y);
@@ -595,6 +599,10 @@ function updateSamplingPreview() {
     $('tpColorBox').style.background = hex; $('tpHex').textContent = hex;
   } catch(e) {}
 }
+
+// --- Video Events ---
+video.onplay = () => startEngine();
+video.onloadedmetadata = () => { log(`📺 วิดีโอพร้อม: ${video.videoWidth}x${video.videoHeight}`); startEngine(); };
 
 // --- Common Utils ---
 $('btnClearLog').onclick = () => { $('logBox').innerHTML = ''; log('🧹 ประวัติล้างแล้ว'); };
@@ -616,12 +624,12 @@ DC.onpointermove = e => { if (!state.isDrawing) return; const p = getPos(e); red
 DC.onpointerup = e => { if (!state.isDrawing) return; state.isDrawing = false; const p = getPos(e); if (state.activeTool === 'rect') state.zones.push({ type: 'rect', x: Math.min(p.x, state.dragStart.x), y: Math.min(p.y, state.dragStart.y), w: Math.abs(p.x - state.dragStart.x), h: Math.abs(p.y - state.dragStart.y) }); else state.zones.push({ type: 'circle', cx: state.dragStart.x, cy: state.dragStart.y, r: Math.hypot(p.x - state.dragStart.x, p.y - state.dragStart.y) }); redrawZones(); };
 
 $('btnPause').onclick = () => { state.paused = !state.paused; state.paused ? video.pause() : video.play(); $('btnPause').textContent = state.paused ? '▶ Resume' : '⏸ Pause'; };
-$('btnStop').onclick = () => { state.running = false; video.pause(); video.src = ""; video.srcObject = null; $('hbadge').textContent = '● STANDBY'; $('novideo').style.display = 'block'; };
+$('btnStop').onclick = () => { state.running = false; video.pause(); video.src = ""; video.srcObject = null; $('hbadge').textContent = '● STANDBY'; $('novideo').style.display = 'block'; log('🛑 Engine Stopped'); };
 
 ['tRect', 'tCircle', 'tNone'].forEach(id => { $(id).onclick = () => { state.activeTool = id === 'tNone' ? null : id.slice(1).toLowerCase(); document.querySelectorAll('.tbtn').forEach(b => b.classList.remove('active')); $(id).classList.add('active'); }; });
 $('tClear').onclick = () => { state.zones = []; redrawZones(); log('🗑 ล้างโซนทั้งหมด'); };
 
-log('🚀 Pixel Detector Pro (Final Version) Loaded.');
+log('🚀 Pixel Detector Pro (Robust v5.5) Ready.');
 </script>
 </body>
 </html>
