@@ -13,7 +13,7 @@
 }
 *{box-sizing:border-box;margin:0;padding:0;touch-action: manipulation;}
 body{background:var(--bg);color:var(--text);font-family:'Noto Sans Thai',sans-serif;
-  min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:12px}
+  min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:12px; padding-bottom: 40px;}
 .wrap{width:100%;max-width:1160px}
 
 header{display:flex;align-items:center;gap:12px;padding:12px 16px;margin-bottom:14px;
@@ -48,7 +48,6 @@ header{display:flex;align-items:center;gap:12px;padding:12px 16px;margin-bottom:
   background:rgba(255,255,255,.03);color:var(--muted);
   font-family:'IBM Plex Mono',monospace;font-size:11px;cursor:pointer;transition:all .15s;
   display:flex;align-items:center;gap:4px}
-.tbtn:hover{border-color:var(--accent);color:var(--text);background:rgba(255,255,255,.07)}
 .tbtn.active{background:rgba(0,229,255,.15);border-color:var(--accent);color:var(--accent)}
 .tbtn.del{border-color:#ff4444;color:#ff6666}
 
@@ -69,12 +68,10 @@ header{display:flex;align-items:center;gap:12px;padding:12px 16px;margin-bottom:
 .btn{padding:10px 16px;border-radius:10px;border:1px solid var(--border);
   background:rgba(255,255,255,.04);color:var(--text);
   font-family:'Noto Sans Thai',sans-serif;font-size:13px;cursor:pointer;transition:all .2s;
-  display:flex;align-items:center;gap:6px; flex: 1; min-width: 140px; justify-content: center;}
-.btn:hover:not(:disabled){background:rgba(0,229,255,.1);border-color:var(--accent)}
+  display:flex;align-items:center;gap:6px; flex: 1; min-width: 130px; justify-content: center;}
 .btn.pri{background:var(--accent);border-color:var(--accent);color:#000;font-weight:600}
-.btn.pri:hover:not(:disabled){background:#33eeff;transform:translateY(-1px)}
-.btn:disabled{opacity: 0.5; cursor: not-allowed}
 
+/* Sidebar Layout & Cards */
 .rpanel{display:flex;flex-direction:column;gap:12px}
 .card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden}
 .card-hd{padding:10px 14px;border-bottom:1px solid var(--border);
@@ -82,74 +79,51 @@ header{display:flex;align-items:center;gap:12px;padding:12px 16px;margin-bottom:
   letter-spacing:1px;display:flex;justify-content:space-between;align-items:center}
 .card-bd{padding:12px}
 
-/* --- Fixed Color Targets Layout (Mobile Optimized) --- */
-.color-targets {
-  display: flex; flex-direction: column; gap: 8px; 
-  max-height: 420px; overflow-y: auto; padding-right: 4px;
-}
-.ct-row {
-  border-radius: 12px; border: 1px solid var(--border); 
-  background: rgba(255,255,255,.02); overflow: hidden; 
-  display: flex; flex-direction: column; width: 100%;
-}
-.ct-top {
-  display: flex; align-items: center; width: 100%; min-height: 52px;
-}
-.ct-swatch {
-  width: 44px; height: 44px; border: none; cursor: pointer; 
-  flex-shrink: 0; margin: 4px 10px; border-radius: 8px;
-}
-.ct-mid {
-  flex: 1; overflow: hidden; display: flex; flex-direction: column; justify-content: center;
-  min-width: 0; /* Important for text truncation */
-}
-.ct-name {
-  font-size: 13px; font-weight: 600; white-space: nowrap; 
-  overflow: hidden; text-overflow: ellipsis; padding-bottom: 2px;
-}
-.ct-del {
-  width: 44px; height: 52px; display: flex; align-items: center; justify-content: center;
-  cursor: pointer; color: var(--muted); border-left: 1px solid var(--border);
-  flex-shrink: 0; transition: 0.2s;
-}
+/* Color Targets Fix */
+.color-targets { display: flex; flex-direction: column; gap: 8px; max-height: 220px; overflow-y: auto; padding-right: 4px; }
+.ct-row { border-radius: 12px; border: 1px solid var(--border); background: rgba(255,255,255,.02); overflow: hidden; display: flex; flex-direction: column; width: 100%; }
+.ct-top { display: flex; align-items: center; width: 100%; min-height: 52px; }
+.ct-swatch { width: 44px; height: 44px; border: none; cursor: pointer; flex-shrink: 0; margin: 4px 10px; border-radius: 8px; }
+.ct-mid { flex: 1; overflow: hidden; display: flex; flex-direction: column; justify-content: center; min-width: 0; }
+.ct-name { font-size: 13px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-bottom: 2px; }
+.ct-del { width: 44px; height: 52px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--muted); border-left: 1px solid var(--border); flex-shrink: 0; }
 .ct-del:hover { color: #ff4444; background: rgba(255,68,68,0.1); }
-.ct-bottom {
-  padding: 8px 12px; border-top: 1px solid var(--border); 
-  background: rgba(0,0,0,.2); display: flex; align-items: center; gap: 12px; width: 100%;
-}
+.ct-bottom { padding: 8px 12px; border-top: 1px solid var(--border); background: rgba(0,0,0,.2); display: flex; align-items: center; gap: 12px; width: 100%; }
 .ct-cnt-wrap { display: flex; align-items: center; gap: 6px; min-width: 70px; flex-shrink: 0; }
 .ct-cnt { font-family:'IBM Plex Mono',monospace; font-size: 18px; font-weight: 700; color: var(--ok); line-height: 1; }
 .ct-tol-wrap { flex: 1; display: flex; align-items: center; gap: 8px; min-width: 0; }
 .ct-tol-slider { flex: 1; height: 4px; accent-color: var(--accent); cursor: pointer; }
 .ct-tol-val { font-family:'IBM Plex Mono',monospace; font-size: 10px; color: var(--accent); min-width: 24px; text-align: right; }
 
-.color-picker-container { display: flex; align-items: center; gap: 8px; margin-top: 12px; }
-.custom-color-input { 
-  width: 52px; height: 48px; border: 2px solid var(--border); border-radius: 10px; 
-  cursor: pointer; background: rgba(0,0,0,0.4); padding: 2px;
+/* Sidebar Precision Sampler (Optimized) */
+.sampler-card { background: rgba(0, 229, 255, 0.08); border-color: var(--accent); display: none; }
+#tpArea {
+  width: 100%; height: 160px; background: rgba(0,0,0,0.4); border: 2px solid var(--border);
+  border-radius: 12px; display: flex; align-items: center; justify-content: center;
+  touch-action: none; position: relative; cursor: crosshair; margin-bottom: 12px;
 }
+#tpArea::after { content: 'คลิกค้างเพื่อลากเลื่อนเป้าหมาย'; color: var(--muted); font-size: 10px; opacity: 0.8; }
+.sampler-preview-row { display: flex; gap: 12px; align-items: center; margin-bottom: 12px; }
+#tpZoomView { width: 80px; height: 80px; background: #000; border-radius: 8px; image-rendering: pixelated; border: 1px solid var(--border); flex-shrink: 0; }
+.sampler-info { flex: 1; display: flex; flex-direction: column; gap: 6px; }
+#tpColorBox { width: 100%; height: 32px; border-radius: 6px; border: 2px solid #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+
+/* Audio Alert */
+.sound-box { border: 2px dashed var(--border); border-radius: 12px; padding: 18px; text-align: center; cursor: pointer; transition: 0.2s; }
+.sound-box:hover { border-color: var(--accent); background: rgba(0,229,255,0.05); }
+.sound-controls { background: rgba(0,0,0,0.2); padding: 10px; border-radius: 10px; border: 1px solid var(--border); margin-top: 8px; }
+.srow { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.srow label { font-size: 11px; color: var(--muted); min-width: 80px; }
+.srow input[type=range] { flex: 1; accent-color: var(--accent); height: 4px; }
+.sval { font-family:'IBM Plex Mono',monospace; font-size: 11px; color: var(--accent); min-width: 30px; text-align: right; }
 
 .sgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .sbox{background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:10px;padding:12px;text-align:center}
 .snum{font-family:'IBM Plex Mono',monospace;font-size:24px;font-weight:700;color:var(--accent)}
 .slbl{font-size:9px;color:var(--muted);text-transform:uppercase;margin-top:4px}
 
-.srow{display:flex;align-items:center;gap:10px;margin-bottom:12px}
-.srow label{font-size:11px;color:var(--muted);min-width:90px}
-input[type=range]{flex:1;accent-color:var(--accent);height:6px;cursor:pointer}
-.sval{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--accent);min-width:30px;text-align:right}
-
-.tgl{width:36px;height:20px;background:var(--border);border-radius:12px;position:relative;cursor:pointer;transition:0.3s}
-.tgl.on{background:var(--accent)}
-.tgl::after{content:'';position:absolute;width:14px;height:14px;background:#fff;border-radius:50%;top:3px;left:3px;transition:0.3s}
-.tgl.on::after{transform:translateX(16px)}
-
-.sound-drop{border:2px dashed var(--border);border-radius:12px;padding:24px;text-align:center;cursor:pointer;transition:0.2s}
-.sound-status{margin-top:10px;padding:10px;background:rgba(0,0,0,0.3);border-radius:10px;font-size:11px;font-family:monospace;display:flex;align-items:center;gap:8px}
-.snd-dot{width:10px;height:10px;border-radius:50%;background:var(--muted)}
-.snd-dot.active{background:var(--ok);box-shadow: 0 0 8px var(--ok)}
-
-#logBox{background:#050508;border:1px solid var(--border);border-radius:10px;padding:10px;height:120px;overflow-y:auto;font-family:monospace;font-size:10px;color:var(--ok)}
+#logBox{background:#050508;border:1px solid var(--border);border-radius:10px;padding:10px;height:80px;overflow-y:auto;font-family:monospace;font-size:9px;color:var(--ok)}
+.lg-e{color:#ff6b6b}
 </style>
 </head>
 <body>
@@ -159,7 +133,7 @@ input[type=range]{flex:1;accent-color:var(--accent);height:6px;cursor:pointer}
     <div class="logo">🎯</div>
     <div class="htxt">
       <h1>PIXEL DETECTOR PRO</h1>
-      <p>ระบบตรวจจับพิกเซล — แก้ไขตำแหน่งเลื่อนบนมือถือ</p>
+      <p>ระบบตรวจจับวัตถุสมบูรณ์แบบ — Precision Unified Control</p>
     </div>
     <div class="hbadge" id="hbadge">● STANDBY</div>
   </header>
@@ -168,13 +142,12 @@ input[type=range]{flex:1;accent-color:var(--accent);height:6px;cursor:pointer}
     <div class="vpanel">
       <div class="vp-hd">
         <div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div>
-        <span style="margin-left:8px">REAL-TIME ENGINE</span>
         <span id="fpsBadge">0 FPS</span>
       </div>
 
       <div class="url-bar">
         <div class="url-row">
-          <input type="text" id="videoUrl" class="url-input" placeholder="ใส่ลิงก์ตรง .mp4...">
+          <input type="text" id="videoUrl" class="url-input" placeholder="ใส่ลิงก์ไฟล์วิดีโอ (.mp4)...">
           <button class="btn pri" id="btnLoadUrl" style="flex:0; min-width: 80px;">Load</button>
         </div>
       </div>
@@ -183,8 +156,6 @@ input[type=range]{flex:1;accent-color:var(--accent);height:6px;cursor:pointer}
         <span class="tlabel">ZONE</span>
         <button class="tbtn" id="tRect">▭ Rect</button>
         <button class="tbtn" id="tCircle">⭕ Circle</button>
-        <button class="tbtn" id="tPoly">🔷 Poly</button>
-        <button class="tbtn" id="tPin">📍 Pin</button>
         <button class="tbtn active" id="tNone">🖱 View</button>
         <button class="tbtn del" id="tClear">🗑</button>
       </div>
@@ -192,7 +163,7 @@ input[type=range]{flex:1;accent-color:var(--accent);height:6px;cursor:pointer}
       <div class="varea" id="videoContainer">
         <div class="novideo" id="novideo">
           <div style="font-size:40px;margin-bottom:10px">📽️</div>
-          <p>เลือกแหล่งข้อมูล หรือใส่ลิงก์ไฟล์วิดีโอ</p>
+          <p>เปิดวิดีโอเพื่อเริ่มใช้งาน</p>
         </div>
         <video id="video" autoplay muted playsinline crossorigin="anonymous"></video>
         <canvas id="overlayCanvas"></canvas>
@@ -202,29 +173,78 @@ input[type=range]{flex:1;accent-color:var(--accent);height:6px;cursor:pointer}
       <div class="controls">
         <button class="btn pri" id="btnCap">🖥️ Screen</button>
         <button class="btn" style="position:relative;overflow:hidden">
-          📂 Upload
-          <input type="file" id="upload" accept="video/*" style="position:absolute;opacity:0;inset:0;cursor:pointer">
+          📂 Upload <input type="file" id="upload" accept="video/*" style="position:absolute;opacity:0;inset:0;cursor:pointer">
         </button>
-        <button class="btn" id="btnSample">🧪 Eyedropper</button>
+        <button class="btn" id="btnSample" style="background:rgba(0, 229, 255, 0.1); border-color: var(--accent);">🧪 Eyedropper</button>
         <button class="btn" id="btnPause">⏸ Pause</button>
         <button class="btn" id="btnStop" style="color:#ff6b6b">⏹ Stop</button>
       </div>
     </div>
 
     <div class="rpanel">
+      
+      <!-- Precision Sampler (Sidebar) -->
+      <div class="card sampler-card" id="samplerCard">
+        <div class="card-hd">💉 PRECISION SAMPLING</div>
+        <div class="card-bd">
+           <div id="tpArea"></div>
+           <div class="sampler-preview-row">
+              <canvas id="tpZoomView" width="80" height="80"></canvas>
+              <div class="sampler-info">
+                 <div id="tpColorBox"></div>
+                 <div id="tpHex" style="font-family:monospace; font-size:11px; text-align:center; background:rgba(0,0,0,0.3); padding:4px; border-radius:4px;">#000000</div>
+              </div>
+           </div>
+           <div style="display:flex; gap:8px;">
+              <button class="btn" id="tpCancel" style="border-color:#ff6b6b; color:#ff6b6b;">ปิดโหมด</button>
+              <button class="btn pri" id="tpConfirm">เลือกสีนี้</button>
+           </div>
+        </div>
+      </div>
+
+      <!-- Target Colors -->
       <div class="card">
         <div class="card-hd">🎨 TARGET COLORS</div>
         <div class="card-bd">
           <div class="color-targets" id="colorTargets"></div>
-          
-          <div class="color-picker-container">
-            <input type="color" id="addColorPick" class="custom-color-input" value="#00ffaa">
-            <input type="text" id="addColorName" placeholder="ชื่อพิกเซล..." style="flex:1;background:rgba(0,0,0,0.3);border:1px solid var(--border);border-radius:10px;padding:12px;color:white;font-size:13px">
+          <div style="display: flex; align-items: center; gap: 8px; margin-top: 12px;">
+            <input type="color" id="addColorPick" style="width: 52px; height: 48px; border-radius: 10px; border: 2px solid var(--border); background: none; cursor: pointer;">
+            <input type="text" id="addColorName" placeholder="ชื่อสี..." style="flex:1;background:rgba(0,0,0,0.3);border:1px solid var(--border);border-radius:10px;padding:12px;color:white;font-size:13px; outline: none;">
             <button class="btn pri" id="btnAddColor" style="padding:12px 18px; min-width: 50px;">+</button>
           </div>
         </div>
       </div>
 
+      <!-- Audio Alert -->
+      <div class="card">
+        <div class="card-hd">🔊 AUDIO ALERT</div>
+        <div class="card-bd">
+          <div class="sound-box" id="soundDrop">
+            <div style="font-size:20px">🎵</div>
+            <div style="font-size:10px; color:var(--muted); margin-top:4px;">อัปโหลดไฟล์เสียง (.mp3, .wav)</div>
+            <input type="file" id="soundUpload" accept="audio/*" style="display:none">
+          </div>
+          <div class="sound-controls">
+            <div class="srow">
+              <label>Threshold ≥</label>
+              <input type="range" id="sndThreshold" min="1" max="50" value="1">
+              <span class="sval" id="vSndThresh">1</span>
+            </div>
+            <div class="srow">
+              <label>Volume</label>
+              <input type="range" id="sndVolume" min="0" max="1" step="0.05" value="0.8">
+              <span class="sval" id="vSndVol">80%</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:8px; font-size:10px; font-family:monospace; color:var(--muted);">
+              <div id="sndDot" style="width:8px;height:8px;border-radius:50%;background:var(--muted)"></div>
+              <span id="sndStatus">Ready</span>
+              <button id="btnTestSound" style="margin-left:auto; background:none; border:none; color:var(--accent); cursor:pointer; font-weight:600;">TEST</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Engine Stats -->
       <div class="card">
         <div class="card-hd">📊 ENGINE STATS</div>
         <div class="card-bd">
@@ -236,53 +256,7 @@ input[type=range]{flex:1;accent-color:var(--accent);height:6px;cursor:pointer}
       </div>
 
       <div class="card">
-        <div class="card-hd">⚙️ SETTINGS</div>
-        <div class="card-bd">
-          <div class="srow">
-            <label>Min Blob (px)</label>
-            <input type="range" id="sMinBlob" min="1" max="100" value="5">
-            <span class="sval" id="vMinBlob">5</span>
-          </div>
-          <div class="srow">
-            <label>Erosion</label>
-            <input type="range" id="sErode" min="0" max="5" value="0">
-            <span class="sval" id="vErode">0</span>
-          </div>
-          <div style="display:flex;justify-content:space-between;padding-top:10px;border-top:1px solid var(--border)">
-            <span style="font-size:12px;color:var(--muted)">แสดง Bounding Box</span>
-            <div class="tgl on" id="tglBox"></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-hd">🔊 AUDIO ALERT</div>
-        <div class="card-bd">
-          <div class="sound-drop" id="soundDrop">
-            <div style="font-size:24px">🎵</div>
-            <div style="font-size:12px;color:var(--muted);margin-top:6px">เลือกไฟล์เสียง</div>
-            <input type="file" id="soundUpload" accept="audio/*" style="display:none">
-          </div>
-          <div class="srow" style="margin-top:12px">
-            <label>Threshold ≥</label>
-            <input type="range" id="sndThreshold" min="1" max="50" value="1">
-            <span class="sval" id="vSndThresh">1</span>
-          </div>
-          <div class="srow" style="margin-top:4px">
-            <label>Volume</label>
-            <input type="range" id="sndVolume" min="0" max="1" step="0.05" value="0.8">
-            <span class="sval" id="vSndVol">80%</span>
-          </div>
-          <div class="sound-status">
-            <div class="snd-dot" id="sndDot"></div>
-            <span id="sndStatus">Ready</span>
-            <button id="btnTestSound" style="margin-left:auto;background:none;border:none;color:var(--accent);cursor:pointer;font-size:11px; font-weight: 600;">TEST</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-hd">📟 SYSTEM LOG</div>
+        <div class="card-hd">📟 LOG</div>
         <div class="card-bd" style="padding:6px">
           <div id="logBox"></div>
         </div>
@@ -299,97 +273,62 @@ const video = $('video');
 const OC = $('overlayCanvas'), oCtx = OC.getContext('2d', { alpha: true });
 const DC = $('drawCanvas'), dCtx = DC.getContext('2d');
 const PC = $('procCanvas'), pCtx = PC.getContext('2d', { willReadFrequently: true });
+const ZC = $('tpZoomView'), zCtx = ZC.getContext('2d');
 
 const state = {
   running: false, paused: false, fps: 0, lastTime: 0, frameCount: 0,
-  minBlobSize: 5, erodeSize: 0, showBox: true, targets: [], zones: [],
+  minBlobSize: 5, showBox: true, targets: [], zones: [],
   activeTool: null, isDrawing: false, dragStart: { x: 0, y: 0 },
+  // Sampling State
+  samplingMode: false, 
+  sampleX: -1, sampleY: -1, // -1 means uninitialized
+  lastPointerX: 0, lastPointerY: 0,
+  isTpDragging: false,
+  // Audio State
   audioCtx: null, audioBuffer: null, soundThreshold: 1, soundVolume: 0.8, isTriggered: false
 };
 
 let maskBuffer = null, visitedBuffer = null;
 
+// --- Target Management ---
 function addColor(hex, name) {
   const r = parseInt(hex.slice(1,3), 16), g = parseInt(hex.slice(3,5), 16), b = parseInt(hex.slice(5,7), 16);
-  state.targets.push({ r, g, b, hex, name, tol: 50, count: 0 });
+  state.targets.push({ r, g, b, hex, name, tol: 40, count: 0 });
   renderTargets();
-  log(`🎨 Added: ${name} (${hex})`);
+  log(`🎨 เพิ่ม: ${name}`);
 }
 
 function renderTargets() {
   const wrap = $('colorTargets');
-  wrap.innerHTML = state.targets.length ? '' : '<p style="text-align:center;font-size:11px;color:var(--muted);padding:14px;">ยังไม่มีสีเป้าหมาย</p>';
+  wrap.innerHTML = state.targets.length ? '' : '<p style="text-align:center;font-size:11px;color:var(--muted);padding:10px;">ยังไม่มีเป้าหมาย</p>';
   state.targets.forEach((t, i) => {
-    const row = document.createElement('div');
-    row.className = 'ct-row';
+    const row = document.createElement('div'); row.className = 'ct-row';
     row.innerHTML = `
       <div class="ct-top">
         <div class="ct-swatch" style="background:${t.hex}"></div>
-        <div class="ct-mid">
-          <div class="ct-name" style="color:${t.hex}">${t.name}</div>
-          <div style="font-size:9px;color:var(--muted)">rgb(${t.r},${t.g},${t.b})</div>
-        </div>
-        <div class="ct-del" onclick="removeTarget(${i})" title="ลบสีนี้">✕</div>
+        <div class="ct-mid"><div class="ct-name" style="color:${t.hex}">${t.name}</div><div style="font-size:9px;color:var(--muted)">rgb(${t.r},${t.g},${t.b})</div></div>
+        <div class="ct-del" onclick="removeTarget(${i})">✕</div>
       </div>
       <div class="ct-bottom">
-        <div class="ct-cnt-wrap">
-           <span style="font-size:9px;color:var(--muted)">พบ:</span>
-           <div class="ct-cnt" id="cnt_${i}">0</div>
-        </div>
+        <div class="ct-cnt-wrap"><span style="font-size:9px;color:var(--muted)">พบ:</span><div class="ct-cnt" id="cnt_${i}">0</div></div>
         <div class="ct-tol-wrap">
           <span style="font-size:9px;color:var(--muted)">Tol</span>
           <input type="range" class="ct-tol-slider" min="5" max="150" value="${t.tol}" oninput="updateTol(${i}, this.value)">
           <span class="ct-tol-val" id="tolv_${i}">${t.tol}</span>
         </div>
-      </div>
-    `;
+      </div>`;
     wrap.appendChild(row);
   });
 }
-
-window.removeTarget = (i) => { state.targets.splice(i, 1); renderTargets(); };
-window.updateTol = (i, val) => { state.targets[i].tol = parseInt(val); $(`tolv_${i}`).textContent = val; };
+window.removeTarget = i => { state.targets.splice(i, 1); renderTargets(); };
+window.updateTol = (i, v) => { state.targets[i].tol = parseInt(v); $(`tolv_${i}`).textContent = v; };
 
 $('btnAddColor').onclick = () => {
-  const hex = $('addColorPick').value;
-  const name = $('addColorName').value.trim() || `Color#${state.targets.length + 1}`;
-  addColor(hex, name);
-  $('addColorName').value = '';
+  const hex = $('addColorPick').value, name = $('addColorName').value.trim() || `Color#${state.targets.length+1}`;
+  addColor(hex, name); $('addColorName').value = '';
 };
 
-setupTgl('tglBox', 'showBox');
-function setupTgl(id, key) {
-  const el = $(id); el.onclick = () => { state[key] = !state[key]; el.classList.toggle('on', state[key]); };
-}
-
-$('btnCap').onclick = async () => {
-  try {
-    const stream = await navigator.mediaDevices.getDisplayMedia({ video: { frameRate: 30 } });
-    video.src = ""; video.srcObject = stream; startEngine();
-  } catch (e) { log('Error: ' + e.message); }
-};
-
-$('upload').onchange = e => {
-  const file = e.target.files[0]; if (!file) return;
-  video.srcObject = null; video.src = URL.createObjectURL(file); video.loop = true; video.play(); startEngine();
-};
-
-$('btnLoadUrl').onclick = () => {
-  const url = $('videoUrl').value.trim(); if (!url) return;
-  video.srcObject = null; video.src = url; video.loop = true; video.crossOrigin = "anonymous";
-  video.play().then(() => { startEngine(); log('✅ Video Loaded'); }).catch(e => { log('❌ Load Failed'); });
-};
-
-$('btnPause').onclick = () => {
-  state.paused = !state.paused; state.paused ? video.pause() : video.play();
-  $('btnPause').textContent = state.paused ? '▶ Resume' : '⏸ Pause';
-};
-
-$('btnStop').onclick = () => {
-  state.running = false; video.pause(); video.src = ""; video.srcObject = null;
-  $('hbadge').textContent = '● STANDBY'; $('novideo').style.display = 'block';
-};
-
+// --- Detection Engine ---
 function startEngine() {
   if (state.running) return; state.running = true;
   $('novideo').style.display = 'none'; $('hbadge').textContent = '● SCANNING';
@@ -411,23 +350,22 @@ function loop(now) {
 
 function processFrame() {
   const start = performance.now(), W = video.videoWidth, H = video.videoHeight;
-  if (W === 0 || H === 0) return;
+  if (W === 0) return;
   if (OC.width !== W) {
     OC.width = DC.width = PC.width = W; OC.height = DC.height = PC.height = H;
     maskBuffer = new Uint8Array(W * H); visitedBuffer = new Uint8Array(W * H); redrawZones();
   }
   pCtx.drawImage(video, 0, 0, W, H);
-  let imageData;
-  try { imageData = pCtx.getImageData(0, 0, W, H); } catch (e) { state.running = false; return; }
+  let imageData; try { imageData = pCtx.getImageData(0, 0, W, H); } catch (e) { return; }
   const data = imageData.data; oCtx.clearRect(0, 0, W, H);
   let totalFound = 0;
+
   state.targets.forEach((tg, idx) => {
     const tolSq = tg.tol * tg.tol; maskBuffer.fill(0);
     for (let i = 0; i < data.length; i += 4) {
-      const dr = data[i] - tg.r, dg = data[i+1] - tg.g, db = data[i+2] - tg.b;
+      const dr = data[i]-tg.r, dg = data[i+1]-tg.g, db = data[i+2]-tg.b;
       if ((dr*dr + dg*dg + db*db) < tolSq) maskBuffer[i >> 2] = 1;
     }
-    if (state.erodeSize > 0) applyErosion(maskBuffer, W, H, state.erodeSize);
     const blobs = findBlobs(maskBuffer, W, H);
     let count = 0;
     blobs.forEach(blob => {
@@ -436,24 +374,12 @@ function processFrame() {
       count++; if (state.showBox) drawBlob(blob, tg.hex, tg.name, count);
     });
     tg.count = count; totalFound += count;
-    const el = $(`cnt_${idx}`); if(el) el.textContent = count;
+    const el = $(`cnt_${idx}`); if (el) el.textContent = count;
   });
-  checkAudioTrigger(totalFound);
-  $('stTotal').textContent = totalFound; $('stMs').textContent = Math.round(performance.now() - start);
-}
 
-function applyErosion(mask, W, H, size) {
-  const temp = new Uint8Array(mask);
-  for (let y = size; y < H - size; y++) {
-    for (let x = size; x < W - size; x++) {
-      if (temp[y * W + x] === 0) continue;
-      let neighbors = 0;
-      for (let dy = -size; dy <= size; dy++)
-        for (let dx = -size; dx <= size; dx++)
-          if (temp[(y + dy) * W + (x + dx)]) neighbors++;
-      if (neighbors < (size * 2 + 1) ** 2) mask[y * W + x] = 0;
-    }
-  }
+  checkAudioTrigger(totalFound);
+  if (state.samplingMode) updateSamplingPreview();
+  $('stTotal').textContent = totalFound; $('stMs').textContent = Math.round(performance.now() - start);
 }
 
 function findBlobs(mask, W, H) {
@@ -479,104 +405,136 @@ function findBlobs(mask, W, H) {
   return blobs;
 }
 
-function drawBlob(blob, color, name, id) {
-  oCtx.strokeStyle = color; oCtx.lineWidth = 2; oCtx.strokeRect(blob.x, blob.y, blob.w, blob.h);
-  oCtx.fillStyle = color; oCtx.font = '10px IBM Plex Mono'; oCtx.fillText(`${name}#${id}`, blob.x, blob.y - 5);
+function drawBlob(b, color, name, id) {
+  oCtx.strokeStyle = color; oCtx.lineWidth = 2; oCtx.strokeRect(b.x, b.y, b.w, b.h);
+  oCtx.fillStyle = color; oCtx.font = '10px IBM Plex Mono'; oCtx.fillText(`${name}#${id}`, b.x, b.y - 5);
 }
 
+// --- Audio ---
 async function initAudio() { if (state.audioCtx) return; state.audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
 async function loadSound(file) {
   await initAudio(); const arrayBuffer = await file.arrayBuffer();
   state.audioBuffer = await state.audioCtx.decodeAudioData(arrayBuffer);
-  log('🎵 Sound ready'); $('sndStatus').textContent = file.name; state.isTriggered = false;
+  log(`🎵 เสียงพร้อม: ${file.name}`); $('sndStatus').textContent = file.name; state.isTriggered = false;
 }
-
 $('soundUpload').onchange = e => loadSound(e.target.files[0]);
 $('soundDrop').onclick = () => $('soundUpload').click();
 $('sndVolume').oninput = e => { state.soundVolume = +e.target.value; $('vSndVol').textContent = Math.round(state.soundVolume * 100) + '%'; };
+$('sndThreshold').oninput = e => { state.soundThreshold = +e.target.value; $('vSndThresh').textContent = e.target.value; };
+$('btnTestSound').onclick = () => { initAudio().then(playAlert); };
 
 function checkAudioTrigger(count) {
-  if (count >= state.soundThreshold) { if (!state.isTriggered) { playAlert(); state.isTriggered = true; }
+  if (count >= state.soundThreshold) {
+    if (!state.isTriggered) { playAlert(); state.isTriggered = true; log(`🔊 แจ้งเตือน!`); }
   } else { state.isTriggered = false; }
 }
-
 function playAlert() {
   if (!state.audioBuffer || !state.audioCtx) return;
   if (state.audioCtx.state === 'suspended') state.audioCtx.resume();
   const source = state.audioCtx.createBufferSource(), gainNode = state.audioCtx.createGain();
   source.buffer = state.audioBuffer; gainNode.gain.value = state.soundVolume;
   source.connect(gainNode); gainNode.connect(state.audioCtx.destination); source.start(0);
-  const dot = $('sndDot'); dot.classList.add('active'); setTimeout(() => dot.classList.remove('active'), 150);
+  const dot = $('sndDot'); dot.style.background = 'var(--ok)'; setTimeout(() => dot.style.background = 'var(--muted)', 200);
 }
 
-$('btnTestSound').onclick = () => { initAudio().then(playAlert); };
-
-function isPointInZones(px, py) {
-  if (state.zones.length === 0) return true;
-  return state.zones.some(z => {
-    if (z.type === 'rect') return px >= z.x && px <= z.x + z.w && py >= z.y && py <= z.y + z.h;
-    if (z.type === 'circle') return Math.hypot(px - z.cx, py - z.cy) <= z.r;
-    if (z.type === 'pin') return Math.hypot(px - z.x, py - z.y) <= 30;
-    return false;
-  });
-}
-
-const getPos = e => {
-  const r = DC.getBoundingClientRect(), clientX = e.touches ? e.touches[0].clientX : e.clientX, clientY = e.touches ? e.touches[0].clientY : e.clientY;
-  return { x: (clientX - r.left) * (DC.width / r.width), y: (clientY - r.top) * (DC.height / r.height) };
-};
-
-DC.onpointerdown = e => { if (!state.activeTool) return; state.isDrawing = true; state.dragStart = getPos(e); };
-DC.onpointermove = e => {
-  if (!state.isDrawing) return;
-  const p = getPos(e); redrawZones(); dCtx.strokeStyle = 'rgba(0, 229, 255, 0.5)'; dCtx.setLineDash([5, 5]);
-  if (state.activeTool === 'rect') dCtx.strokeRect(state.dragStart.x, state.dragStart.y, p.x - state.dragStart.x, p.y - state.dragStart.y);
-  dCtx.setLineDash([]);
-};
-DC.onpointerup = e => {
-  if (!state.isDrawing) return; state.isDrawing = false;
-  const p = getPos(e), z = { type: state.activeTool, id: Date.now() };
-  if (state.activeTool === 'rect') {
-    z.x = Math.min(p.x, state.dragStart.x); z.y = Math.min(p.y, state.dragStart.y);
-    z.w = Math.abs(p.x - state.dragStart.x); z.h = Math.abs(p.y - state.dragStart.y);
-  }
-  if (z.w > 5 || z.h > 5 || state.activeTool === 'pin') state.zones.push(z);
-  redrawZones();
-};
-
+// --- Zones System ---
+function isPointInZones(px, py) { if (state.zones.length === 0) return true; return state.zones.some(z => (z.type === 'rect' ? (px >= z.x && px <= z.x + z.w && py >= z.y && py <= z.y + z.h) : Math.hypot(px - z.cx, py - z.cy) <= z.r)); }
 function redrawZones() {
-  dCtx.clearRect(0, 0, DC.width, DC.height);
-  state.zones.forEach(z => {
-    dCtx.strokeStyle = 'var(--accent)'; dCtx.fillStyle = 'rgba(0, 229, 255, 0.1)';
-    if (z.type === 'rect') { dCtx.strokeRect(z.x, z.y, z.w, z.h); dCtx.fillRect(z.x, z.y, z.w, z.h); }
-  });
+  dCtx.clearRect(0, 0, DC.width, DC.height); dCtx.strokeStyle = 'var(--accent)'; dCtx.fillStyle = 'rgba(0, 229, 255, 0.1)';
+  state.zones.forEach(z => { if (z.type === 'rect') { dCtx.strokeRect(z.x, z.y, z.w, z.h); dCtx.fillRect(z.x, z.y, z.w, z.h); } else { dCtx.beginPath(); dCtx.arc(z.cx, z.cy, z.r, 0, Math.PI * 2); dCtx.stroke(); dCtx.fill(); } });
 }
+const getPos = e => {
+  const r = DC.getBoundingClientRect(), cx = e.touches ? e.touches[0].clientX : e.clientX, cy = e.touches ? e.touches[0].clientY : e.clientY;
+  return { x: (cx - r.left) * (DC.width / r.width), y: (cy - r.top) * (DC.height / r.height) };
+};
+DC.onpointerdown = e => { if (!state.activeTool || state.samplingMode) return; state.isDrawing = true; state.dragStart = getPos(e); };
+DC.onpointermove = e => { if (!state.isDrawing) return; const p = getPos(e); redrawZones(); dCtx.strokeStyle = 'var(--accent2)'; dCtx.setLineDash([5, 5]); if (state.activeTool === 'rect') dCtx.strokeRect(state.dragStart.x, state.dragStart.y, p.x - state.dragStart.x, p.y - state.dragStart.y); else { const r = Math.hypot(p.x - state.dragStart.x, p.y - state.dragStart.y); dCtx.beginPath(); dCtx.arc(state.dragStart.x, state.dragStart.y, r, 0, Math.PI * 2); dCtx.stroke(); } dCtx.setLineDash([]); };
+DC.onpointerup = e => { if (!state.isDrawing) return; state.isDrawing = false; const p = getPos(e); if (state.activeTool === 'rect') state.zones.push({ type: 'rect', x: Math.min(p.x, state.dragStart.x), y: Math.min(p.y, state.dragStart.y), w: Math.abs(p.x - state.dragStart.x), h: Math.abs(p.y - state.dragStart.y) }); else state.zones.push({ type: 'circle', cx: state.dragStart.x, cy: state.dragStart.y, r: Math.hypot(p.x - state.dragStart.x, p.y - state.dragStart.y) }); redrawZones(); };
 
+// --- Sampling Mode (Sidebar Touchpad Unified) ---
 $('btnSample').onclick = () => {
-  DC.style.cursor = 'crosshair';
-  const sampleOnce = e => {
-    e.preventDefault(); const p = getPos(e), pix = pCtx.getImageData(p.x, p.y, 1, 1).data;
-    const hex = "#" + ((1 << 24) + (pix[0] << 16) + (pix[1] << 8) + pix[2]).toString(16).slice(1);
-    $('addColorPick').value = hex; log(`💉 ดูดสี: ${hex}`); DC.style.cursor = 'default'; DC.removeEventListener('pointerdown', sampleOnce);
-  };
-  DC.addEventListener('pointerdown', sampleOnce);
+  if (video.videoWidth === 0) return log('❌ เปิดวิดีโอก่อน');
+  state.samplingMode = true;
+  // Preserve position if already set
+  if (state.sampleX === -1) {
+    state.sampleX = video.videoWidth / 2;
+    state.sampleY = video.videoHeight / 2;
+  }
+  $('samplerCard').style.display = 'block';
+  log('💉 Precision Mode: ลากพื้นที่ Touchpad ใน Sidebar เพื่อเลื่อนเป้า');
+  updateSamplingPreview();
 };
 
-function log(m) { const b = $('logBox'), d = new Date().toLocaleTimeString(); b.innerHTML += `<div>[${d}] ${m}</div>`; b.scrollTop = b.scrollHeight; }
+$('tpCancel').onclick = () => { state.samplingMode = false; $('samplerCard').style.display = 'none'; redrawZones(); };
+$('tpConfirm').onclick = () => {
+  const p = pCtx.getImageData(Math.floor(state.sampleX), Math.floor(state.sampleY), 1, 1).data;
+  const hex = "#" + ((1 << 24) + (p[0] << 16) + (p[1] << 8) + p[2]).toString(16).slice(1);
+  $('addColorPick').value = hex; log(`🎯 ดูดสี: ${hex}`);
+  state.samplingMode = false; $('samplerCard').style.display = 'none'; redrawZones();
+};
 
-$('sMinBlob').oninput = e => { state.minBlobSize = +e.target.value; $('vMinBlob').textContent = e.target.value; };
-$('sErode').oninput = e => { state.erodeSize = +e.target.value; $('vErode').textContent = e.target.value; };
-$('sndThreshold').oninput = e => { state.soundThreshold = +e.target.value; $('vSndThresh').textContent = e.target.value; };
+// Fixed Touchpad Interaction
+$('tpArea').onpointerdown = e => {
+  state.isTpDragging = true;
+  state.lastPointerX = e.clientX;
+  state.lastPointerY = e.clientY;
+  $('tpArea').setPointerCapture(e.pointerId);
+};
 
-['tRect', 'tCircle', 'tPoly', 'tPin', 'tNone'].forEach(id => {
-  $(id).onclick = () => {
-    state.activeTool = id === 'tNone' ? null : id.slice(1).toLowerCase();
-    document.querySelectorAll('.tbtn').forEach(b => b.classList.remove('active')); $(id).classList.add('active');
-  };
-});
-$('tClear').onclick = () => { state.zones = []; redrawZones(); log('🗑 ล้างโซน'); };
+$('tpArea').onpointermove = e => {
+  if (!state.samplingMode || !state.isTpDragging) return;
+  
+  const dx = (e.clientX - state.lastPointerX) * 0.8;
+  const dy = (e.clientY - state.lastPointerY) * 0.8;
+  
+  state.sampleX = Math.max(0, Math.min(video.videoWidth, state.sampleX + dx));
+  state.sampleY = Math.max(0, Math.min(video.videoHeight, state.sampleY + dy));
+  
+  state.lastPointerX = e.clientX;
+  state.lastPointerY = e.clientY;
+  updateSamplingPreview();
+};
 
-log('🚀 ระบบพร้อมทำงาน (แก้ไข Layout เรียบร้อย)');
+$('tpArea').onpointerup = () => { state.isTpDragging = false; };
+$('tpArea').onpointercancel = () => { state.isTpDragging = false; };
+
+function updateSamplingPreview() {
+  if (!state.samplingMode) return;
+  dCtx.clearRect(0,0,DC.width, DC.height);
+  redrawZones();
+  const x = state.sampleX, y = state.sampleY;
+  
+  // Crosshair on Main Screen
+  dCtx.strokeStyle = '#fff'; dCtx.lineWidth = 1;
+  dCtx.beginPath(); dCtx.moveTo(x-25,y); dCtx.lineTo(x+25,y); dCtx.moveTo(x,y-25); dCtx.lineTo(x,y+25); dCtx.stroke();
+  dCtx.strokeStyle = '#000'; dCtx.strokeRect(x-1, y-1, 3, 3);
+
+  try {
+    const p = pCtx.getImageData(Math.floor(x), Math.floor(y), 1, 1).data;
+    const hex = "#" + ((1 << 24) + (p[0] << 16) + (p[1] << 8) + p[2]).toString(16).slice(1);
+    $('tpColorBox').style.background = hex;
+    $('tpHex').textContent = hex;
+    
+    // Sidebar Zoom View
+    zCtx.clearRect(0,0,ZC.width, ZC.height);
+    zCtx.imageSmoothingEnabled = false;
+    zCtx.drawImage(PC, x-5, y-5, 10, 10, 0, 0, ZC.width, ZC.height);
+    zCtx.strokeStyle = 'red'; zCtx.strokeRect(37, 37, 6, 6);
+  } catch(e) {}
+}
+
+// --- Inputs ---
+$('btnCap').onclick = async () => { try { video.srcObject = await navigator.mediaDevices.getDisplayMedia({ video: true }); startEngine(); } catch(e) {} };
+$('upload').onchange = e => { const f = e.target.files[0]; if (f) { video.src = URL.createObjectURL(f); video.loop = true; startEngine(); } };
+$('btnLoadUrl').onclick = () => { const u = $('videoUrl').value.trim(); if (u) { video.src = u; video.crossOrigin="anonymous"; video.play().then(startEngine).catch(()=>log('❌ ลิงก์ไม่รองรับ CORS','lg-e')); } };
+$('btnPause').onclick = () => { state.paused = !state.paused; state.paused ? video.pause() : video.play(); $('btnPause').textContent = state.paused ? '▶ Resume' : '⏸ Pause'; };
+$('btnStop').onclick = () => { state.running = false; video.pause(); video.src = ""; video.srcObject = null; $('hbadge').textContent = '● STANDBY'; $('novideo').style.display = 'block'; };
+
+function log(m, c='') { const b = $('logBox'), d = new Date().toLocaleTimeString(); b.innerHTML += `<div class="${c}">[${d}] ${m}</div>`; b.scrollTop = b.scrollHeight; }
+['tRect', 'tCircle', 'tNone'].forEach(id => { $(id).onclick = () => { state.activeTool = id === 'tNone' ? null : id.slice(1).toLowerCase(); document.querySelectorAll('.tbtn').forEach(b => b.classList.remove('active')); $(id).classList.add('active'); }; });
+$('tClear').onclick = () => { state.zones = []; redrawZones(); log('🗑 ล้างโซนทั้งหมด'); };
+
+log('🚀 ระบบพร้อมทำงาน (Unified Precision Touchpad)');
 </script>
 </body>
-</html>
+</html>*
