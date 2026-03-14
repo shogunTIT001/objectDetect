@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Pixel Shape Detector Pro</title>
+<title>Pixel Shape Detector Pro - Ultra Stable v4.5</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Noto+Sans+Thai:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -71,7 +71,7 @@ header{display:flex;align-items:center;gap:12px;padding:12px 16px;margin-bottom:
   display:flex;align-items:center;gap:6px; flex: 1; min-width: 130px; justify-content: center;}
 .btn.pri{background:var(--accent);border-color:var(--accent);color:#000;font-weight:600}
 
-/* Sidebar Layout & Cards */
+/* Sidebar Layout */
 .rpanel{display:flex;flex-direction:column;gap:12px}
 .card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden}
 .card-hd{padding:10px 14px;border-bottom:1px solid var(--border);
@@ -79,7 +79,20 @@ header{display:flex;align-items:center;gap:12px;padding:12px 16px;margin-bottom:
   letter-spacing:1px;display:flex;justify-content:space-between;align-items:center}
 .card-bd{padding:12px}
 
-/* Color Targets Fix */
+/* Precision Sampler Sidebar */
+.sampler-card { background: rgba(0, 229, 255, 0.08); border-color: var(--accent); display: none; }
+#tpArea {
+  width: 100%; height: 160px; background: rgba(0,0,0,0.4); border: 2px solid var(--border);
+  border-radius: 12px; display: flex; align-items: center; justify-content: center;
+  touch-action: none; position: relative; cursor: crosshair; margin-bottom: 12px;
+}
+#tpArea::after { content: 'คลิกค้างเพื่อลากเลื่อนเป้าหมาย'; color: var(--muted); font-size: 10px; opacity: 0.8; }
+.sampler-preview-row { display: flex; gap: 12px; align-items: center; margin-bottom: 12px; }
+#tpZoomView { width: 80px; height: 80px; background: #000; border-radius: 8px; image-rendering: pixelated; border: 1px solid var(--border); flex-shrink: 0; }
+.sampler-info { flex: 1; display: flex; flex-direction: column; gap: 6px; }
+#tpColorBox { width: 100%; height: 32px; border-radius: 6px; border: 2px solid #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+
+/* Color Targets */
 .color-targets { display: flex; flex-direction: column; gap: 8px; max-height: 220px; overflow-y: auto; padding-right: 4px; }
 .ct-row { border-radius: 12px; border: 1px solid var(--border); background: rgba(255,255,255,.02); overflow: hidden; display: flex; flex-direction: column; width: 100%; }
 .ct-top { display: flex; align-items: center; width: 100%; min-height: 52px; }
@@ -95,19 +108,6 @@ header{display:flex;align-items:center;gap:12px;padding:12px 16px;margin-bottom:
 .ct-tol-slider { flex: 1; height: 4px; accent-color: var(--accent); cursor: pointer; }
 .ct-tol-val { font-family:'IBM Plex Mono',monospace; font-size: 10px; color: var(--accent); min-width: 24px; text-align: right; }
 
-/* Sidebar Precision Sampler (Optimized) */
-.sampler-card { background: rgba(0, 229, 255, 0.08); border-color: var(--accent); display: none; }
-#tpArea {
-  width: 100%; height: 160px; background: rgba(0,0,0,0.4); border: 2px solid var(--border);
-  border-radius: 12px; display: flex; align-items: center; justify-content: center;
-  touch-action: none; position: relative; cursor: crosshair; margin-bottom: 12px;
-}
-#tpArea::after { content: 'คลิกค้างเพื่อลากเลื่อนเป้าหมาย'; color: var(--muted); font-size: 10px; opacity: 0.8; }
-.sampler-preview-row { display: flex; gap: 12px; align-items: center; margin-bottom: 12px; }
-#tpZoomView { width: 80px; height: 80px; background: #000; border-radius: 8px; image-rendering: pixelated; border: 1px solid var(--border); flex-shrink: 0; }
-.sampler-info { flex: 1; display: flex; flex-direction: column; gap: 6px; }
-#tpColorBox { width: 100%; height: 32px; border-radius: 6px; border: 2px solid #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
-
 /* Audio Alert */
 .sound-box { border: 2px dashed var(--border); border-radius: 12px; padding: 18px; text-align: center; cursor: pointer; transition: 0.2s; }
 .sound-box:hover { border-color: var(--accent); background: rgba(0,229,255,0.05); }
@@ -117,13 +117,16 @@ header{display:flex;align-items:center;gap:12px;padding:12px 16px;margin-bottom:
 .srow input[type=range] { flex: 1; accent-color: var(--accent); height: 4px; }
 .sval { font-family:'IBM Plex Mono',monospace; font-size: 11px; color: var(--accent); min-width: 30px; text-align: right; }
 
-.sgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.sbox{background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:10px;padding:12px;text-align:center}
-.snum{font-family:'IBM Plex Mono',monospace;font-size:24px;font-weight:700;color:var(--accent)}
-.slbl{font-size:9px;color:var(--muted);text-transform:uppercase;margin-top:4px}
-
-#logBox{background:#050508;border:1px solid var(--border);border-radius:10px;padding:10px;height:80px;overflow-y:auto;font-family:monospace;font-size:9px;color:var(--ok)}
+/* Log Box */
+#logBox{background:#050508;border:1px solid var(--border);border-radius:10px;padding:10px;height:100px;overflow-y:auto;font-family:monospace;font-size:9px;color:var(--ok)}
 .lg-e{color:#ff6b6b}
+.clear-log-btn { background: none; border: 1px solid var(--muted); color: var(--muted); border-radius: 4px; padding: 2px 6px; font-size: 9px; cursor: pointer; transition: 0.2s; }
+.clear-log-btn:hover { border-color: #ff6b6b; color: #ff6b6b; }
+
+.tgl{width:36px;height:20px;background:var(--border);border-radius:12px;position:relative;cursor:pointer;transition:0.3s}
+.tgl.on{background:var(--accent)}
+.tgl::after{content:'';position:absolute;width:14px;height:14px;background:#fff;border-radius:50%;top:3px;left:3px;transition:0.3s}
+.tgl.on::after{transform:translateX(16px)}
 </style>
 </head>
 <body>
@@ -133,7 +136,7 @@ header{display:flex;align-items:center;gap:12px;padding:12px 16px;margin-bottom:
     <div class="logo">🎯</div>
     <div class="htxt">
       <h1>PIXEL DETECTOR PRO</h1>
-      <p>ระบบตรวจจับวัตถุสมบูรณ์แบบ — Precision Unified Control</p>
+      <p>ระบบตรวจจับวัตถุสมบูรณ์แบบ — Enhanced Stability 4.5</p>
     </div>
     <div class="hbadge" id="hbadge">● STANDBY</div>
   </header>
@@ -163,7 +166,7 @@ header{display:flex;align-items:center;gap:12px;padding:12px 16px;margin-bottom:
       <div class="varea" id="videoContainer">
         <div class="novideo" id="novideo">
           <div style="font-size:40px;margin-bottom:10px">📽️</div>
-          <p>เปิดวิดีโอเพื่อเริ่มใช้งาน</p>
+          <p>เปิดวิดีโอ หรือใช้ Screen Capture เพื่อเริ่ม</p>
         </div>
         <video id="video" autoplay muted playsinline crossorigin="anonymous"></video>
         <canvas id="overlayCanvas"></canvas>
@@ -175,15 +178,14 @@ header{display:flex;align-items:center;gap:12px;padding:12px 16px;margin-bottom:
         <button class="btn" style="position:relative;overflow:hidden">
           📂 Upload <input type="file" id="upload" accept="video/*" style="position:absolute;opacity:0;inset:0;cursor:pointer">
         </button>
-        <button class="btn" id="btnSample" style="background:rgba(0, 229, 255, 0.1); border-color: var(--accent);">🧪 Eyedropper</button>
+        <button class="btn" id="btnSample">🧪 Eyedropper</button>
         <button class="btn" id="btnPause">⏸ Pause</button>
         <button class="btn" id="btnStop" style="color:#ff6b6b">⏹ Stop</button>
       </div>
     </div>
 
     <div class="rpanel">
-      
-      <!-- Precision Sampler (Sidebar) -->
+      <!-- Sampler -->
       <div class="card sampler-card" id="samplerCard">
         <div class="card-hd">💉 PRECISION SAMPLING</div>
         <div class="card-bd">
@@ -196,32 +198,53 @@ header{display:flex;align-items:center;gap:12px;padding:12px 16px;margin-bottom:
               </div>
            </div>
            <div style="display:flex; gap:8px;">
-              <button class="btn" id="tpCancel" style="border-color:#ff6b6b; color:#ff6b6b;">ปิดโหมด</button>
-              <button class="btn pri" id="tpConfirm">เลือกสีนี้</button>
+              <button class="btn" id="tpCancel" style="border-color:#ff6b6b; color:#ff6b6b; font-size: 11px;">ปิด</button>
+              <button class="btn pri" id="tpConfirm" style="font-size: 11px;">เลือก</button>
            </div>
         </div>
       </div>
 
-      <!-- Target Colors -->
+      <!-- Optimization -->
+      <div class="card">
+        <div class="card-hd">🚀 ENGINE TUNING</div>
+        <div class="card-bd">
+          <div class="srow">
+            <label>Proc. Res</label>
+            <input type="range" id="sProcScale" min="0.1" max="1" step="0.1" value="0.5">
+            <span class="sval" id="vProcScale">50%</span>
+          </div>
+          <div class="srow">
+            <label>Min Blob</label>
+            <input type="range" id="sMinBlob" min="1" max="50" value="5">
+            <span class="sval" id="vMinBlob">5</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;padding-top:8px;border-top:1px solid var(--border)">
+            <span style="font-size:11px;color:var(--muted)">แสดง Bounding Box</span>
+            <div class="tgl on" id="tglBox"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Targets -->
       <div class="card">
         <div class="card-hd">🎨 TARGET COLORS</div>
         <div class="card-bd">
           <div class="color-targets" id="colorTargets"></div>
           <div style="display: flex; align-items: center; gap: 8px; margin-top: 12px;">
             <input type="color" id="addColorPick" style="width: 52px; height: 48px; border-radius: 10px; border: 2px solid var(--border); background: none; cursor: pointer;">
-            <input type="text" id="addColorName" placeholder="ชื่อสี..." style="flex:1;background:rgba(0,0,0,0.3);border:1px solid var(--border);border-radius:10px;padding:12px;color:white;font-size:13px; outline: none;">
+            <input type="text" id="addColorName" placeholder="ชื่อพิกเซล..." style="flex:1;background:rgba(0,0,0,0.3);border:1px solid var(--border);border-radius:10px;padding:12px;color:white;font-size:13px; outline: none;">
             <button class="btn pri" id="btnAddColor" style="padding:12px 18px; min-width: 50px;">+</button>
           </div>
         </div>
       </div>
 
-      <!-- Audio Alert -->
+      <!-- Audio -->
       <div class="card">
         <div class="card-hd">🔊 AUDIO ALERT</div>
         <div class="card-bd">
           <div class="sound-box" id="soundDrop">
             <div style="font-size:20px">🎵</div>
-            <div style="font-size:10px; color:var(--muted); margin-top:4px;">อัปโหลดไฟล์เสียง (.mp3, .wav)</div>
+            <div style="font-size:10px; color:var(--muted); margin-top:4px;">คลิกเพื่อตั้งเสียง</div>
             <input type="file" id="soundUpload" accept="audio/*" style="display:none">
           </div>
           <div class="sound-controls">
@@ -244,19 +267,11 @@ header{display:flex;align-items:center;gap:12px;padding:12px 16px;margin-bottom:
         </div>
       </div>
 
-      <!-- Engine Stats -->
       <div class="card">
-        <div class="card-hd">📊 ENGINE STATS</div>
-        <div class="card-bd">
-          <div class="sgrid">
-            <div class="sbox"><div class="snum" id="stTotal">0</div><div class="slbl">Found</div></div>
-            <div class="sbox"><div class="snum" id="stMs">0</div><div class="slbl">Latency (ms)</div></div>
-          </div>
+        <div class="card-hd">
+          <span>📟 LOG</span>
+          <button class="clear-log-btn" id="btnClearLog">🗑 Clear</button>
         </div>
-      </div>
-
-      <div class="card">
-        <div class="card-hd">📟 LOG</div>
         <div class="card-bd" style="padding:6px">
           <div id="logBox"></div>
         </div>
@@ -279,13 +294,9 @@ const state = {
   running: false, paused: false, fps: 0, lastTime: 0, frameCount: 0,
   minBlobSize: 5, showBox: true, targets: [], zones: [],
   activeTool: null, isDrawing: false, dragStart: { x: 0, y: 0 },
-  // Sampling State
-  samplingMode: false, 
-  sampleX: -1, sampleY: -1, // -1 means uninitialized
-  lastPointerX: 0, lastPointerY: 0,
-  isTpDragging: false,
-  // Audio State
-  audioCtx: null, audioBuffer: null, soundThreshold: 1, soundVolume: 0.8, isTriggered: false
+  samplingMode: false, sampleX: -1, sampleY: -1, lastPointerX: 0, lastPointerY: 0, isTpDragging: false,
+  audioCtx: null, audioBuffer: null, soundThreshold: 1, soundVolume: 0.8, isTriggered: false,
+  procScale: 0.5
 };
 
 let maskBuffer = null, visitedBuffer = null;
@@ -295,7 +306,7 @@ function addColor(hex, name) {
   const r = parseInt(hex.slice(1,3), 16), g = parseInt(hex.slice(3,5), 16), b = parseInt(hex.slice(5,7), 16);
   state.targets.push({ r, g, b, hex, name, tol: 40, count: 0 });
   renderTargets();
-  log(`🎨 เพิ่ม: ${name}`);
+  log(`🎨 เพิ่มเป้าหมาย: ${name}`);
 }
 
 function renderTargets() {
@@ -330,8 +341,10 @@ $('btnAddColor').onclick = () => {
 
 // --- Detection Engine ---
 function startEngine() {
-  if (state.running) return; state.running = true;
-  $('novideo').style.display = 'none'; $('hbadge').textContent = '● SCANNING';
+  if (state.running) return;
+  state.running = true;
+  $('novideo').style.display = 'none';
+  $('hbadge').textContent = '● SCANNING';
   requestAnimationFrame(loop);
 }
 
@@ -349,29 +362,45 @@ function loop(now) {
 }
 
 function processFrame() {
-  const start = performance.now(), W = video.videoWidth, H = video.videoHeight;
-  if (W === 0) return;
-  if (OC.width !== W) {
-    OC.width = DC.width = PC.width = W; OC.height = DC.height = PC.height = H;
-    maskBuffer = new Uint8Array(W * H); visitedBuffer = new Uint8Array(W * H); redrawZones();
+  const start = performance.now();
+  const fullW = video.videoWidth, fullH = video.videoHeight;
+  if (fullW === 0) return;
+
+  const procW = Math.floor(fullW * state.procScale);
+  const procH = Math.floor(fullH * state.procScale);
+
+  if (OC.width !== fullW) {
+    OC.width = DC.width = fullW; OC.height = DC.height = fullH;
+    redrawZones();
   }
-  pCtx.drawImage(video, 0, 0, W, H);
-  let imageData; try { imageData = pCtx.getImageData(0, 0, W, H); } catch (e) { return; }
-  const data = imageData.data; oCtx.clearRect(0, 0, W, H);
+
+  if (PC.width !== procW) {
+    PC.width = procW; PC.height = procH;
+    maskBuffer = new Uint8Array(procW * procH);
+    visitedBuffer = new Uint8Array(procW * procH);
+  }
+
+  pCtx.drawImage(video, 0, 0, procW, procH);
+  let imageData; try { imageData = pCtx.getImageData(0, 0, procW, procH); } catch (e) { return; }
+  const data = imageData.data; oCtx.clearRect(0, 0, fullW, fullH);
+  
   let totalFound = 0;
+  const invScale = 1 / state.procScale;
 
   state.targets.forEach((tg, idx) => {
     const tolSq = tg.tol * tg.tol; maskBuffer.fill(0);
-    for (let i = 0; i < data.length; i += 4) {
+    for (let i = 0, j = 0; i < data.length; i += 4, j++) {
       const dr = data[i]-tg.r, dg = data[i+1]-tg.g, db = data[i+2]-tg.b;
-      if ((dr*dr + dg*dg + db*db) < tolSq) maskBuffer[i >> 2] = 1;
+      if ((dr*dr + dg*dg + db*db) < tolSq) maskBuffer[j] = 1;
     }
-    const blobs = findBlobs(maskBuffer, W, H);
+    const blobs = findBlobs(maskBuffer, procW, procH);
     let count = 0;
     blobs.forEach(blob => {
-      if (blob.size < state.minBlobSize * state.minBlobSize) return;
-      if (!isPointInZones(blob.cx, blob.cy)) return;
-      count++; if (state.showBox) drawBlob(blob, tg.hex, tg.name, count);
+      const fx = blob.cx * invScale, fy = blob.cy * invScale;
+      if (blob.size < (state.minBlobSize * state.minBlobSize * state.procScale)) return;
+      if (!isPointInZones(fx, fy)) return;
+      count++;
+      if (state.showBox) drawBlob({ x: blob.x*invScale, y: blob.y*invScale, w: blob.w*invScale, h: blob.h*invScale }, tg.hex, tg.name, count);
     });
     tg.count = count; totalFound += count;
     const el = $(`cnt_${idx}`); if (el) el.textContent = count;
@@ -424,9 +453,8 @@ $('sndThreshold').oninput = e => { state.soundThreshold = +e.target.value; $('vS
 $('btnTestSound').onclick = () => { initAudio().then(playAlert); };
 
 function checkAudioTrigger(count) {
-  if (count >= state.soundThreshold) {
-    if (!state.isTriggered) { playAlert(); state.isTriggered = true; log(`🔊 แจ้งเตือน!`); }
-  } else { state.isTriggered = false; }
+  if (count >= state.soundThreshold) { if (!state.isTriggered) { playAlert(); state.isTriggered = true; } }
+  else { state.isTriggered = false; }
 }
 function playAlert() {
   if (!state.audioBuffer || !state.audioCtx) return;
@@ -437,104 +465,163 @@ function playAlert() {
   const dot = $('sndDot'); dot.style.background = 'var(--ok)'; setTimeout(() => dot.style.background = 'var(--muted)', 200);
 }
 
-// --- Zones System ---
-function isPointInZones(px, py) { if (state.zones.length === 0) return true; return state.zones.some(z => (z.type === 'rect' ? (px >= z.x && px <= z.x + z.w && py >= z.y && py <= z.y + z.h) : Math.hypot(px - z.cx, py - z.cy) <= z.r)); }
-function redrawZones() {
-  dCtx.clearRect(0, 0, DC.width, DC.height); dCtx.strokeStyle = 'var(--accent)'; dCtx.fillStyle = 'rgba(0, 229, 255, 0.1)';
-  state.zones.forEach(z => { if (z.type === 'rect') { dCtx.strokeRect(z.x, z.y, z.w, z.h); dCtx.fillRect(z.x, z.y, z.w, z.h); } else { dCtx.beginPath(); dCtx.arc(z.cx, z.cy, z.r, 0, Math.PI * 2); dCtx.stroke(); dCtx.fill(); } });
-}
-const getPos = e => {
-  const r = DC.getBoundingClientRect(), cx = e.touches ? e.touches[0].clientX : e.clientX, cy = e.touches ? e.touches[0].clientY : e.clientY;
-  return { x: (cx - r.left) * (DC.width / r.width), y: (cy - r.top) * (DC.height / r.height) };
-};
-DC.onpointerdown = e => { if (!state.activeTool || state.samplingMode) return; state.isDrawing = true; state.dragStart = getPos(e); };
-DC.onpointermove = e => { if (!state.isDrawing) return; const p = getPos(e); redrawZones(); dCtx.strokeStyle = 'var(--accent2)'; dCtx.setLineDash([5, 5]); if (state.activeTool === 'rect') dCtx.strokeRect(state.dragStart.x, state.dragStart.y, p.x - state.dragStart.x, p.y - state.dragStart.y); else { const r = Math.hypot(p.x - state.dragStart.x, p.y - state.dragStart.y); dCtx.beginPath(); dCtx.arc(state.dragStart.x, state.dragStart.y, r, 0, Math.PI * 2); dCtx.stroke(); } dCtx.setLineDash([]); };
-DC.onpointerup = e => { if (!state.isDrawing) return; state.isDrawing = false; const p = getPos(e); if (state.activeTool === 'rect') state.zones.push({ type: 'rect', x: Math.min(p.x, state.dragStart.x), y: Math.min(p.y, state.dragStart.y), w: Math.abs(p.x - state.dragStart.x), h: Math.abs(p.y - state.dragStart.y) }); else state.zones.push({ type: 'circle', cx: state.dragStart.x, cy: state.dragStart.y, r: Math.hypot(p.x - state.dragStart.x, p.y - state.dragStart.y) }); redrawZones(); };
+// --- Screen Capture FIX (Ultra Robust) ---
+$('btnCap').onclick = async () => {
+  try {
+    // Check for Secure Context
+    if (!window.isSecureContext) {
+        log('❌ Screen Capture ต้องการ HTTPS หรือ localhost', 'lg-e');
+        return;
+    }
+    
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getDisplayMedia) {
+        log('❌ เบราว์เซอร์ของคุณไม่รองรับการแชร์หน้าจอ', 'lg-e');
+        return;
+    }
 
-// --- Sampling Mode (Sidebar Touchpad Unified) ---
+    log('🖥️ กำลังขอสิทธิ์บันทึกหน้าจอ...');
+    
+    // Stop current engine
+    state.running = false;
+    video.pause();
+    
+    // Clear existing sources properly
+    if (video.srcObject) {
+        video.srcObject.getTracks().forEach(track => track.stop());
+    }
+    video.srcObject = null;
+    if (video.src) { URL.revokeObjectURL(video.src); video.removeAttribute('src'); }
+
+    // Request Screen
+    const stream = await navigator.mediaDevices.getDisplayMedia({ 
+        video: { cursor: "always" }, 
+        audio: false 
+    });
+    
+    video.srcObject = stream;
+    
+    // Auto-stop detection when sharing ends
+    stream.getVideoTracks()[0].onended = () => {
+        log('🛑 แชร์หน้าจอถูกหยุด');
+        state.running = false;
+        video.pause();
+        video.srcObject = null;
+        $('hbadge').textContent = '● STANDBY';
+        $('novideo').style.display = 'block';
+    };
+
+    // Force Play
+    await video.play();
+    startEngine();
+    log('✅ เริ่มบันทึกหน้าจอสำเร็จ');
+
+  } catch (e) {
+    if (e.name === 'NotAllowedError') {
+        log('⚠️ คุณยกเลิกการแชร์หน้าจอ');
+    } else {
+        log('❌ ข้อผิดพลาด: ' + e.message, 'lg-e');
+    }
+  }
+};
+
+$('upload').onchange = e => {
+  const f = e.target.files[0];
+  if (f) {
+    video.srcObject = null;
+    video.src = URL.createObjectURL(f);
+    video.loop = true;
+    video.play();
+    startEngine();
+    log(`📂 โหลดวิดีโอ: ${f.name}`);
+  }
+};
+
+$('btnLoadUrl').onclick = () => {
+  const u = $('videoUrl').value.trim();
+  if (u) {
+    video.srcObject = null;
+    video.src = u;
+    video.crossOrigin = "anonymous";
+    video.play().then(() => {
+      startEngine();
+      log('🔗 โหลดลิงก์วิดีโอสำเร็จ');
+    }).catch(e => log('❌ ไม่สามารถโหลดลิงก์ได้ (CORS)','lg-e'));
+  }
+};
+
+// --- Precision Sampling ---
 $('btnSample').onclick = () => {
   if (video.videoWidth === 0) return log('❌ เปิดวิดีโอก่อน');
   state.samplingMode = true;
-  // Preserve position if already set
-  if (state.sampleX === -1) {
-    state.sampleX = video.videoWidth / 2;
-    state.sampleY = video.videoHeight / 2;
-  }
+  if (state.sampleX === -1) { state.sampleX = video.videoWidth/2; state.sampleY = video.videoHeight/2; }
   $('samplerCard').style.display = 'block';
-  log('💉 Precision Mode: ลากพื้นที่ Touchpad ใน Sidebar เพื่อเลื่อนเป้า');
   updateSamplingPreview();
 };
 
 $('tpCancel').onclick = () => { state.samplingMode = false; $('samplerCard').style.display = 'none'; redrawZones(); };
 $('tpConfirm').onclick = () => {
-  const p = pCtx.getImageData(Math.floor(state.sampleX), Math.floor(state.sampleY), 1, 1).data;
+  const tempC = document.createElement('canvas'); tempC.width = video.videoWidth; tempC.height = video.videoHeight;
+  const tCtx = tempC.getContext('2d'); tCtx.drawImage(video, 0, 0);
+  const p = tCtx.getImageData(Math.floor(state.sampleX), Math.floor(state.sampleY), 1, 1).data;
   const hex = "#" + ((1 << 24) + (p[0] << 16) + (p[1] << 8) + p[2]).toString(16).slice(1);
-  $('addColorPick').value = hex; log(`🎯 ดูดสี: ${hex}`);
-  state.samplingMode = false; $('samplerCard').style.display = 'none'; redrawZones();
+  $('addColorPick').value = hex; log(`🎯 เลือกสี: ${hex}`); state.samplingMode = false; $('samplerCard').style.display = 'none'; redrawZones();
 };
 
-// Fixed Touchpad Interaction
-$('tpArea').onpointerdown = e => {
-  state.isTpDragging = true;
-  state.lastPointerX = e.clientX;
-  state.lastPointerY = e.clientY;
-  $('tpArea').setPointerCapture(e.pointerId);
-};
-
+$('tpArea').onpointerdown = e => { state.isTpDragging = true; state.lastPointerX = e.clientX; state.lastPointerY = e.clientY; $('tpArea').setPointerCapture(e.pointerId); };
 $('tpArea').onpointermove = e => {
   if (!state.samplingMode || !state.isTpDragging) return;
-  
-  const dx = (e.clientX - state.lastPointerX) * 0.8;
-  const dy = (e.clientY - state.lastPointerY) * 0.8;
-  
+  const dx = (e.clientX - state.lastPointerX) * 0.8, dy = (e.clientY - state.lastPointerY) * 0.8;
   state.sampleX = Math.max(0, Math.min(video.videoWidth, state.sampleX + dx));
   state.sampleY = Math.max(0, Math.min(video.videoHeight, state.sampleY + dy));
-  
-  state.lastPointerX = e.clientX;
-  state.lastPointerY = e.clientY;
+  state.lastPointerX = e.clientX; state.lastPointerY = e.clientY;
   updateSamplingPreview();
 };
-
 $('tpArea').onpointerup = () => { state.isTpDragging = false; };
-$('tpArea').onpointercancel = () => { state.isTpDragging = false; };
 
 function updateSamplingPreview() {
   if (!state.samplingMode) return;
-  dCtx.clearRect(0,0,DC.width, DC.height);
-  redrawZones();
+  dCtx.clearRect(0,0,DC.width, DC.height); redrawZones();
   const x = state.sampleX, y = state.sampleY;
-  
-  // Crosshair on Main Screen
   dCtx.strokeStyle = '#fff'; dCtx.lineWidth = 1;
   dCtx.beginPath(); dCtx.moveTo(x-25,y); dCtx.lineTo(x+25,y); dCtx.moveTo(x,y-25); dCtx.lineTo(x,y+25); dCtx.stroke();
-  dCtx.strokeStyle = '#000'; dCtx.strokeRect(x-1, y-1, 3, 3);
-
   try {
-    const p = pCtx.getImageData(Math.floor(x), Math.floor(y), 1, 1).data;
+    zCtx.clearRect(0, 0, ZC.width, ZC.height); zCtx.imageSmoothingEnabled = false;
+    zCtx.drawImage(video, x - 5, y - 5, 10, 10, 0, 0, ZC.width, ZC.height);
+    zCtx.strokeStyle = 'red'; zCtx.lineWidth = 2; zCtx.strokeRect(37, 37, 6, 6);
+    const tempC = document.createElement('canvas'); tempC.width = 1; tempC.height = 1;
+    const tCtx = tempC.getContext('2d'); tCtx.drawImage(video, -x, -y);
+    const p = tCtx.getImageData(0,0,1,1).data;
     const hex = "#" + ((1 << 24) + (p[0] << 16) + (p[1] << 8) + p[2]).toString(16).slice(1);
-    $('tpColorBox').style.background = hex;
-    $('tpHex').textContent = hex;
-    
-    // Sidebar Zoom View
-    zCtx.clearRect(0,0,ZC.width, ZC.height);
-    zCtx.imageSmoothingEnabled = false;
-    zCtx.drawImage(PC, x-5, y-5, 10, 10, 0, 0, ZC.width, ZC.height);
-    zCtx.strokeStyle = 'red'; zCtx.strokeRect(37, 37, 6, 6);
+    $('tpColorBox').style.background = hex; $('tpHex').textContent = hex;
   } catch(e) {}
 }
 
-// --- Inputs ---
-$('btnCap').onclick = async () => { try { video.srcObject = await navigator.mediaDevices.getDisplayMedia({ video: true }); startEngine(); } catch(e) {} };
-$('upload').onchange = e => { const f = e.target.files[0]; if (f) { video.src = URL.createObjectURL(f); video.loop = true; startEngine(); } };
-$('btnLoadUrl').onclick = () => { const u = $('videoUrl').value.trim(); if (u) { video.src = u; video.crossOrigin="anonymous"; video.play().then(startEngine).catch(()=>log('❌ ลิงก์ไม่รองรับ CORS','lg-e')); } };
+// --- Common Utils ---
+$('btnClearLog').onclick = () => { $('logBox').innerHTML = ''; log('🧹 ประวัติล้างแล้ว'); };
+function log(m, c='') { const b = $('logBox'), d = new Date().toLocaleTimeString(); b.innerHTML += `<div class="${c}">[${d}] ${m}</div>`; b.scrollTop = b.scrollHeight; }
+
+$('sProcScale').oninput = e => { state.procScale = +e.target.value; $('vProcScale').textContent = Math.round(state.procScale*100)+'%'; };
+$('sMinBlob').oninput = e => { state.minBlobSize = +e.target.value; $('vMinBlob').textContent = e.target.value; };
+setupTgl('tglBox', 'showBox');
+function setupTgl(id, key) { const el = $(id); el.onclick = () => { state[key] = !state[key]; el.classList.toggle('on', state[key]); }; }
+
+function isPointInZones(px, py) { if (state.zones.length === 0) return true; return state.zones.some(z => (z.type === 'rect' ? (px >= z.x && px <= z.x + z.w && py >= z.y && py <= z.y + z.h) : Math.hypot(px - z.cx, py - z.cy) <= z.r)); }
+function redrawZones() {
+  dCtx.clearRect(0, 0, DC.width, DC.height); dCtx.strokeStyle = 'var(--accent)'; dCtx.fillStyle = 'rgba(0, 229, 255, 0.1)';
+  state.zones.forEach(z => { if (z.type === 'rect') { dCtx.strokeRect(z.x, z.y, z.w, z.h); dCtx.fillRect(z.x, z.y, z.w, z.h); } else { dCtx.beginPath(); dCtx.arc(z.cx, z.cy, z.r, 0, Math.PI * 2); dCtx.stroke(); dCtx.fill(); } });
+}
+const getPos = e => { const r = DC.getBoundingClientRect(), cx = e.touches ? e.touches[0].clientX : e.clientX, cy = e.touches ? e.touches[0].clientY : e.clientY; return { x: (cx - r.left) * (DC.width / r.width), y: (cy - r.top) * (DC.height / r.height) }; };
+DC.onpointerdown = e => { if (!state.activeTool || state.samplingMode) return; state.isDrawing = true; state.dragStart = getPos(e); };
+DC.onpointermove = e => { if (!state.isDrawing) return; const p = getPos(e); redrawZones(); dCtx.strokeStyle = 'var(--accent2)'; dCtx.setLineDash([5, 5]); if (state.activeTool === 'rect') dCtx.strokeRect(state.dragStart.x, state.dragStart.y, p.x - state.dragStart.x, p.y - state.dragStart.y); else { const r = Math.hypot(p.x - state.dragStart.x, p.y - state.dragStart.y); dCtx.beginPath(); dCtx.arc(state.dragStart.x, state.dragStart.y, r, 0, Math.PI * 2); dCtx.stroke(); } dCtx.setLineDash([]); };
+DC.onpointerup = e => { if (!state.isDrawing) return; state.isDrawing = false; const p = getPos(e); if (state.activeTool === 'rect') state.zones.push({ type: 'rect', x: Math.min(p.x, state.dragStart.x), y: Math.min(p.y, state.dragStart.y), w: Math.abs(p.x - state.dragStart.x), h: Math.abs(p.y - state.dragStart.y) }); else state.zones.push({ type: 'circle', cx: state.dragStart.x, cy: state.dragStart.y, r: Math.hypot(p.x - state.dragStart.x, p.y - state.dragStart.y) }); redrawZones(); };
+
 $('btnPause').onclick = () => { state.paused = !state.paused; state.paused ? video.pause() : video.play(); $('btnPause').textContent = state.paused ? '▶ Resume' : '⏸ Pause'; };
 $('btnStop').onclick = () => { state.running = false; video.pause(); video.src = ""; video.srcObject = null; $('hbadge').textContent = '● STANDBY'; $('novideo').style.display = 'block'; };
 
-function log(m, c='') { const b = $('logBox'), d = new Date().toLocaleTimeString(); b.innerHTML += `<div class="${c}">[${d}] ${m}</div>`; b.scrollTop = b.scrollHeight; }
 ['tRect', 'tCircle', 'tNone'].forEach(id => { $(id).onclick = () => { state.activeTool = id === 'tNone' ? null : id.slice(1).toLowerCase(); document.querySelectorAll('.tbtn').forEach(b => b.classList.remove('active')); $(id).classList.add('active'); }; });
 $('tClear').onclick = () => { state.zones = []; redrawZones(); log('🗑 ล้างโซนทั้งหมด'); };
 
-log('🚀 ระบบพร้อมทำงาน (Unified Precision Touchpad)');
+log('🚀 Pixel Detector Pro (Final Version) Loaded.');
 </script>
 </body>
-</html>*
+</html>
